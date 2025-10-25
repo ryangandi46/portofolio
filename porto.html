@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Ryan Septian Gandi</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- Devicon CDN for logos -->
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
+
+    <!-- tsParticles (untuk animasi partikel) -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.12.0/tsparticles.slim.bundle.min.js"></script>
+    <!-- Vanilla-Tilt.js (untuk efek 3D pada kartu) -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"
+    ></script>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #0a0a1a;
+        overflow-x: hidden;
+      }
+      #tsparticles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+      .glassmorphism {
+        background: rgba(17, 24, 39, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .text-glow {
+        text-shadow: 0 0 8px rgba(0, 255, 255, 0.5),
+          0 0 20px rgba(0, 255, 255, 0.3);
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0a0a1a;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #0891b2;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #06b6d4;
+      }
+
+      #photo-lanyard-container {
+        position: relative;
+        cursor: grab;
+        user-select: none;
+        width: 208px; /* w-52 */
+        margin: 0 auto;
+      }
+      #photo-lanyard-container.dragging {
+        cursor: grabbing;
+        z-index: 20;
+      }
+      .photo-lanyard-strap {
+        width: 20px;
+        height: 120px;
+        background: linear-gradient(to bottom, rgba(14, 165, 233, 0), #0891b2);
+        margin: 0 auto;
+        clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
+        position: relative;
+        top: 20px;
+        opacity: 0.8;
+      }
+      .photo-lanyard-clip {
+        width: 25px;
+        height: 10px;
+        background-color: #9ca3af;
+        border-radius: 3px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+        border: 1px solid #4b5563;
+        box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2);
+      }
+      .form-input::placeholder {
+        color: #9ca3af;
+      }
+      .progress-bar {
+        background-color: rgba(42, 63, 85, 0.5);
+        border-radius: 10px;
+        height: 8px;
+        width: 100%;
+      }
+      .progress {
+        background: linear-gradient(90deg, #0891b2, #6366f1);
+        height: 100%;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body class="text-gray-200">
+    <div id="tsparticles"></div>
+
+    <header class="fixed top-0 left-0 right-0 z-50 glassmorphism">
+      <div
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a
+          href="#"
+          class="text-2xl font-bold text-cyan-400 text-glow"
+          data-translate="header_title"
+          >Portofolio</a
+        >
+        <nav class="hidden md:flex space-x-8 items-center">
+          <a
+            href="#tentang"
+            class="text-gray-300 transition-all duration-300 hover:text-cyan-400 hover:text-glow"
+            data-translate="nav_about"
+            >tentang</a
+          >
+          <a
+            href="#pengalaman"
+            class="text-gray-300 transition-all duration-300 hover:text-cyan-400 hover:text-glow"
+            data-translate="nav_experience"
+            >pengalaman</a
+          >
+          <a
+            href="#keahlian"
+            class="text-gray-300 transition-all duration-300 hover:text-cyan-400 hover:text-glow"
+            data-translate="nav_skills"
+            >keahlian</a
+          >
+          <a
+            href="#projek"
+            class="text-gray-300 transition-all duration-300 hover:text-cyan-400 hover:text-glow"
+            data-translate="nav_projects"
+            >projek</a
+          >
+          <a
+            href="#kontak"
+            class="text-gray-300 transition-all duration-300 hover:text-cyan-400 hover:text-glow"
+            data-translate="nav_contact"
+            >kontak</a
+          >
+        </nav>
+        <!-- Language Switcher Desktop -->
+        <div class="hidden md:flex items-center space-x-3 ml-6">
+          <button
+            class="lang-switch font-semibold text-sm transition-colors"
+            data-lang="id"
+          >
+            ID
+          </button>
+          <span class="text-gray-600">|</span>
+          <button
+            class="lang-switch font-semibold text-sm transition-colors"
+            data-lang="en"
+          >
+            EN
+          </button>
+        </div>
+        <button
+          id="mobile-menu-button"
+          class="md:hidden text-gray-300 hover:text-white focus:outline-none"
+        >
+          <i data-feather="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+      <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4 space-y-2">
+        <a
+          href="#tentang"
+          class="block text-gray-300 hover:bg-gray-700/50 hover:text-cyan-400 rounded-md px-3 py-2"
+          data-translate="nav_about_mobile"
+          >tentang</a
+        >
+        <a
+          href="#pengalaman"
+          class="block text-gray-300 hover:bg-gray-700/50 hover:text-cyan-400 rounded-md px-3 py-2"
+          data-translate="nav_experience_mobile"
+          >pengalaman</a
+        >
+        <a
+          href="#keahlian"
+          class="block text-gray-300 hover:bg-gray-700/50 hover:text-cyan-400 rounded-md px-3 py-2"
+          data-translate="nav_skills_mobile"
+          >keahlian</a
+        >
+        <a
+          href="#projek"
+          class="block text-gray-300 hover:bg-gray-700/50 hover:text-cyan-400 rounded-md px-3 py-2"
+          data-translate="nav_projects_mobile"
+          >projek</a
+        >
+        <a
+          href="#kontak"
+          class="block text-gray-300 hover:bg-gray-700/50 hover:text-cyan-400 rounded-md px-3 py-2"
+          data-translate="nav_contact_mobile"
+          >kontak</a
+        >
+        <!-- Language Switcher Mobile -->
+        <div
+          class="border-t border-gray-700 pt-4 mt-4 flex justify-center space-x-4"
+        >
+          <button
+            class="lang-switch font-semibold text-sm transition-colors"
+            data-lang="id"
+            data-translate="lang_id"
+          >
+            Indonesia
+          </button>
+          <span class="text-gray-600">|</span>
+          <button
+            class="lang-switch font-semibold text-sm transition-colors"
+            data-lang="en"
+            data-translate="lang_en"
+          >
+            English
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container mx-auto px-6">
+      <!-- Bagian Beranda (Desain Baru) -->
+      <section
+        id="beranda"
+        class="min-h-screen flex items-center justify-center relative"
+      >
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <!-- Kolom Kiri: Teks -->
+          <div class="text-center md:text-left">
+            <p
+              class="text-xl md:text-2xl text-white"
+              data-translate="hero_greeting"
+            >
+              Hello, It's Me
+            </p>
+            <h1
+              class="text-5xl md:text-6xl font-bold text-white my-2"
+              data-translate="hero_name"
+            >
+              Ryan Septian Gandi
+            </h1>
+            <h2 class="text-2xl md:text-3xl text-white mb-4">
+              <span data-translate="hero_intro">And I'm a</span>
+              <span
+                id="typing-text"
+                class="font-semibold text-cyan-400 text-glow"
+              ></span
+              ><span
+                class="inline-block w-1 h-7 bg-cyan-400 animate-pulse ml-1"
+              ></span>
+            </h2>
+            <p
+              class="text-gray-300 leading-relaxed mb-8 max-w-md mx-auto md:mx-0"
+              data-translate="hero_description"
+            >
+              Fresh Graduate Teknik Informatika dengan fokus pada Web
+              Development. Berpengalaman membangun aplikasi dari perancangan
+              hingga deployment.
+            </p>
+            <div class="flex justify-center md:justify-start space-x-4 mb-8">
+              <a
+                href="https://github.com/ryangandi46"
+                target="_blank"
+                class="p-3 bg-gray-800/60 rounded-full transition-all duration-300 hover:text-white hover:bg-cyan-600"
+                ><i data-feather="github" class="w-5 h-5"></i
+              ></a>
+              <a
+                href="https://linkedin.com/in/ryanseptiangandi"
+                target="_blank"
+                class="p-3 bg-gray-800/60 rounded-full transition-all duration-300 hover:text-white hover:bg-cyan-600"
+                ><i data-feather="linkedin" class="w-5 h-5"></i
+              ></a>
+              <!-- <a
+                href="https://twitter.com"
+                target="_blank"
+                class="p-3 bg-gray-800/60 rounded-full transition-all duration-300 hover:text-white hover:bg-cyan-600"
+                ><i data-feather="twitter" class="w-5 h-5"></i
+              ></a> -->
+            </div>
+            <a
+              href="#tentang"
+              class="inline-block bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/40 hover:scale-105"
+              data-translate="hero_button"
+            >
+              More About Me
+            </a>
+          </div>
+          <!-- Kolom Kanan: Foto -->
+          <div class="hidden md:flex justify-center items-center">
+            <div data-tilt class="relative w-80 h-80 lg:w-96 lg:h-96">
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-cyan-600 to-purple-600 rounded-full blur-3xl opacity-40 animate-pulse"
+              ></div>
+              <img
+                src="image/foto ryan.png"
+                alt="Foto Ryan"
+                class="relative w-full h-full object-cover rounded-full border-4 border-cyan-500/50 shadow-2xl shadow-cyan-500/20"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bagian Tentang Saya (dengan lanyard foto) -->
+      <section id="tentang" class="py-24">
+        <div class="reveal max-w-5xl mx-auto">
+          <h2
+            class="text-4xl font-bold text-center mb-2 text-white"
+            data-translate="about_title"
+          >
+            Tentang Saya
+          </h2>
+          <div class="w-24 h-1 bg-cyan-500 mx-auto mb-12"></div>
+          <div
+            class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center glassmorphism p-8 md:p-12 rounded-2xl"
+          >
+            <!-- Kolom Kiri: Lanyard Foto -->
+            <div class="md:col-span-1 flex justify-center relative h-96">
+              <div id="photo-lanyard-container">
+                <div class="photo-lanyard-strap"></div>
+                <div class="photo-lanyard-clip"></div>
+                <img
+                  data-tilt
+                  src="image/foto ryan.png"
+                  alt="Foto Profil Ryan"
+                  class="w-60 h-60 object-cover rounded-2xl border-2 border-cyan-500/50 shadow-lg shadow-cyan-500/20"
+                />
+              </div>
+            </div>
+            <!-- Kolom Kanan: Teks Info -->
+            <div class="md:col-span-2">
+              <h3
+                class="text-2xl font-semibold text-white mb-4"
+                data-translate="about_whoami"
+              >
+                Siapa saya?
+              </h3>
+              <p
+                class="text-gray-300 leading-relaxed mb-6"
+                data-translate="about_description"
+              >
+                Fresh Graduate Teknik Informatika dengan fokus pada Web
+                Development (Laravel, PHP, JavaScript, MySQL) serta pengalaman
+                dalam proyek nyata. Terbiasa bekerja dengan tim menggunakan
+                metode Agile, serta memiliki semangat tinggi untuk terus belajar
+                teknologi baru.
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm mb-6">
+                <div>
+                  <strong
+                    class="text-cyan-400"
+                    data-translate="about_name_label"
+                    >Nama:</strong
+                  >
+                  Ryan Septian Gandi
+                </div>
+                <div>
+                  <strong class="text-cyan-400" data-translate="about_age_label"
+                    >Umur:</strong
+                  >
+                  22
+                </div>
+                <div>
+                  <strong
+                    class="text-cyan-400"
+                    data-translate="about_email_label"
+                    >Email:</strong
+                  >
+                  rianseptiangandi25372@gmail.com
+                </div>
+                <div>
+                  <strong
+                    class="text-cyan-400"
+                    data-translate="about_experience_label"
+                    >Status:</strong
+                  >
+                  Fresh Graduate
+                </div>
+                <div>
+                  <strong
+                    class="text-cyan-400"
+                    data-translate="about_phone_label"
+                    >Telepon:</strong
+                  >
+                  +62 855-2378-9654
+                </div>
+                <div>
+                  <strong
+                    class="text-cyan-400"
+                    data-translate="about_location_label"
+                    >Lokasi:</strong
+                  >
+                  Bandung, Indonesia
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-4">
+                <a
+                  href="#"
+                  class="inline-block bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/40 hover:scale-105"
+                  data-translate="about_cv_button"
+                  >Download CV</a
+                >
+                <a
+                  href="#kontak"
+                  class="inline-block bg-gray-700/50 text-gray-200 border border-gray-600 font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:bg-gray-700 hover:text-white"
+                  data-translate="about_contact_button"
+                  >Hubungi Saya</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bagian Pengalaman -->
+      <section id="pengalaman" class="py-24">
+        <div class="reveal max-w-5xl mx-auto">
+          <h2
+            class="text-4xl font-bold text-center mb-2 text-white"
+            data-translate="experience_title"
+          >
+            Pengalaman
+          </h2>
+          <div class="w-24 h-1 bg-cyan-500 mx-auto mb-12"></div>
+          <div class="relative border-l-2 border-cyan-800/50 ml-6 md:ml-0">
+            <div class="mb-10 ml-8">
+              <span
+                class="absolute flex items-center justify-center w-6 h-6 bg-cyan-600 rounded-full -left-3 ring-8 ring-gray-900"
+              >
+                <i data-feather="briefcase" class="w-3 h-3 text-white"></i>
+              </span>
+              <div class="glassmorphism p-6 rounded-lg">
+                <h3
+                  class="flex items-center mb-1 text-lg font-semibold text-white"
+                >
+                  <span data-translate="exp1_title"
+                    >Web Developer Freelance</span
+                  >
+                </h3>
+                <time
+                  class="block mb-2 text-sm font-normal leading-none text-gray-400"
+                  data-translate="exp1_company"
+                  >BKAD Tangerang Selatan // Nov 2024 - Jan 2025</time
+                >
+                <p
+                  class="text-base font-normal text-gray-300"
+                  data-translate="exp1_desc"
+                >
+                  Merancang & mengembangkan sistem informasi keuangan dan aset
+                  daerah berbasis Laravel 11 & MySQL, termasuk fitur GIS dengan
+                  Leaflet JS.
+                </p>
+              </div>
+            </div>
+            <div class="mb-10 ml-8">
+              <span
+                class="absolute flex items-center justify-center w-6 h-6 bg-cyan-600 rounded-full -left-3 ring-8 ring-gray-900"
+              >
+                <i data-feather="code" class="w-3 h-3 text-white"></i>
+              </span>
+              <div class="glassmorphism p-6 rounded-lg">
+                <h3
+                  class="text-lg font-semibold text-white"
+                  data-translate="exp2_title"
+                >
+                  Web Developer Intern
+                </h3>
+                <time
+                  class="block mb-2 text-sm font-normal leading-none text-gray-400"
+                  data-translate="exp2_company"
+                  >SMK Itikurih Ciparay // Jun 2024 - Sep 2024</time
+                >
+                <p
+                  class="text-base font-normal text-gray-300"
+                  data-translate="exp2_desc"
+                >
+                  Membangun sistem inventaris sekolah menggunakan Laravel 10
+                  untuk menggantikan pencatatan manual, termasuk dokumentasi
+                  teknis dan pengujian.
+                </p>
+              </div>
+            </div>
+            <div class="mb-10 ml-8">
+              <span
+                class="absolute flex items-center justify-center w-6 h-6 bg-cyan-600 rounded-full -left-3 ring-8 ring-gray-900"
+              >
+                <i data-feather="cpu" class="w-3 h-3 text-white"></i>
+              </span>
+              <div class="glassmorphism p-6 rounded-lg">
+                <h3
+                  class="text-lg font-semibold text-white"
+                  data-translate="exp3_title"
+                >
+                  Software Engineer (Studi Independen)
+                </h3>
+                <time
+                  class="block mb-2 text-sm font-normal leading-none text-gray-400"
+                  data-translate="exp3_company"
+                  >Indobot Academy // Feb 2024 - Jun 2024</time
+                >
+                <p
+                  class="text-base font-normal text-gray-300"
+                  data-translate="exp3_desc"
+                >
+                  Pelatihan intensif 6 bulan di bidang IoT, mencakup arsitektur,
+                  hardware, pemrograman (C, Arduino), platform (Blynk,
+                  Thingsboard), dan manajemen proyek.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bagian Keahlian -->
+      <section id="keahlian" class="py-24">
+        <div class="reveal text-center">
+          <h2
+            class="text-4xl font-bold mb-2 text-white"
+            data-translate="skills_title"
+          >
+            Keahlian Saya
+          </h2>
+          <div class="w-24 h-1 bg-cyan-500 mx-auto mb-12"></div>
+        </div>
+        <div
+          class="reveal max-w-5xl mx-auto glassmorphism p-8 md:p-12 rounded-2xl"
+        >
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div>
+              <h3
+                class="text-xl font-semibold mb-4 text-white"
+                data-translate="skills_tech_title"
+              >
+                Keahlian Teknis
+              </h3>
+              <div class="space-y-5">
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-base font-medium text-gray-300"
+                      >Laravel</span
+                    ><span class="text-sm font-medium text-gray-400">90%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress" style="width: 90%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-base font-medium text-gray-300">PHP</span
+                    ><span class="text-sm font-medium text-gray-400">85%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress" style="width: 85%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-base font-medium text-gray-300"
+                      >JavaScript</span
+                    ><span class="text-sm font-medium text-gray-400">80%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress" style="width: 80%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-base font-medium text-gray-300"
+                      >MySQL</span
+                    ><span class="text-sm font-medium text-gray-400">88%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress" style="width: 88%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-semibold mb-4 text-white"
+                data-translate="skills_prof_title"
+              >
+                Keahlian Interpersonal
+              </h3>
+              <div class="space-y-5">
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span
+                      class="text-base font-medium text-gray-300"
+                      data-translate="skill_team"
+                      >Kerja Sama Tim</span
+                    ><span class="text-sm font-medium text-gray-400">95%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress" style="width: 95%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span
+                      class="text-base font-medium text-gray-300"
+                      data-translate="skill_problem"
+                      >Problem Solving</span
+                    ><span class="text-sm font-medium text-gray-400">90%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress" style="width: 90%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span
+                      class="text-base font-medium text-gray-300"
+                      data-translate="skill_adapt"
+                      >Adaptabilitas</span
+                    ><span class="text-sm font-medium text-gray-400">92%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress" style="width: 92%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span
+                      class="text-base font-medium text-gray-300"
+                      data-translate="skill_comm"
+                      >Manajemen Waktu</span
+                    ><span class="text-sm font-medium text-gray-400">85%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress" style="width: 85%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal text-center mt-16">
+          <h3
+            class="text-2xl font-bold mb-2 text-white"
+            data-translate="skills_tool_title"
+          >
+            Tools & Teknologi
+          </h3>
+          <div class="w-20 h-0.5 bg-cyan-500 mx-auto mb-8"></div>
+          <div class="max-w-4xl mx-auto flex flex-wrap justify-center gap-6">
+            <div
+              class="text-center p-4 glassmorphism rounded-xl w-28 h-28 flex flex-col justify-center items-center transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-cyan-500/20"
+            >
+              <!-- <i class="devicon-laravel-plain colored text-6xl mb-2"></i> -->
+
+              <i class="devicon-laravel-original colored text-6xl mb-2"></i>
+
+              <p class="font-semibold text-sm">Laravel</p>
+            </div>
+            <div
+              class="text-center p-4 glassmorphism rounded-xl w-28 h-28 flex flex-col justify-center items-center transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-cyan-500/20"
+            >
+              <i class="devicon-codeigniter-plain colored text-6xl mb-2"></i>
+              <p class="font-semibold text-sm">CodeIgniter</p>
+            </div>
+            <div
+              class="text-center p-4 glassmorphism rounded-xl w-28 h-28 flex flex-col justify-center items-center transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-cyan-500/20"
+            >
+              <i class="devicon-github-original text-6xl mb-2"></i>
+              <p class="font-semibold text-sm">GitHub</p>
+            </div>
+            <div
+              class="text-center p-4 glassmorphism rounded-xl w-28 h-28 flex flex-col justify-center items-center transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-cyan-500/20"
+            >
+              <i class="devicon-mysql-plain-wordmark colored text-6xl mb-2"></i>
+              <p class="font-semibold text-sm">MySQL</p>
+            </div>
+            <div
+              class="text-center p-4 glassmorphism rounded-xl w-28 h-28 flex flex-col justify-center items-center transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-cyan-500/20"
+            >
+              <i class="devicon-tailwindcss-plain colored text-6xl mb-2"></i>
+              <p class="font-semibold text-sm">Tailwind CSS</p>
+            </div>
+            <div
+              class="text-center p-4 glassmorphism rounded-xl w-28 h-28 flex flex-col justify-center items-center transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-cyan-500/20"
+            >
+              <i class="devicon-figma-plain colored text-6xl mb-2"></i>
+              <p class="font-semibold text-sm">Figma</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projek" class="py-24">
+            <div class="reveal text-center">
+                <h2 class="text-4xl font-bold mb-2 text-white" data-translate="projects_title">Projek</h2>
+                <div class="w-24 h-1 bg-cyan-500 mx-auto mb-12"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div data-tilt class="reveal glassmorphism rounded-2xl overflow-hidden flex flex-col">
+                    <img src="https://placehold.co/600x400/0a0a1a/06b6d4?text=SITEPAD" alt="Gambar Projek 1" class="w-full h-56 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold mb-2 text-white" data-translate="proj1_title">SITEPAD - Sistem Pendataan Aset Daerah</h3>
+                        <p class="text-gray-400 mb-4 text-sm flex-grow" data-translate="proj1_desc">Aplikasi web untuk pengelolaan keuangan & aset pemerintah daerah dengan dashboard interaktif, CRUD, dan manajemen user.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-700 text-cyan-300 text-xs font-semibold px-2.5 py-1 rounded-full">Laravel 11</span>
+                            <span class="bg-gray-700 text-cyan-300 text-xs font-semibold px-2.5 py-1 rounded-full">Tailwind CSS</span>
+                            <span class="bg-gray-700 text-cyan-300 text-xs font-semibold px-2.5 py-1 rounded-full">MySQL</span>
+                            <span class="bg-gray-700 text-cyan-300 text-xs font-semibold px-2.5 py-1 rounded-full">Leaflet JS</span>
+                        </div>
+                        <a href="#" class="text-cyan-400 font-semibold hover:text-cyan-300 mt-auto" data-translate="proj1_link">Lihat Repositori &rarr;</a>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div data-tilt class="reveal glassmorphism rounded-2xl overflow-hidden flex flex-col" style="transition-delay: 200ms;">
+                    <img src="https://placehold.co/600x400/0a0a1a/06b6d4?text=MASET-APP" alt="Gambar Projek 2" class="w-full h-56 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold mb-2 text-white" data-translate="proj2_title">MASET-APP - Rekomendasi Makanan Sehat</h3>
+                        <p class="text-gray-400 mb-4 text-sm flex-grow" data-translate="proj2_desc">Aplikasi rekomendasi makanan sehat berbasis Laravel & MySQL, dengan integrasi API machine learning (KMeans).</p>
+                         <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-700 text-cyan-300 text-xs font-semibold px-2.5 py-1 rounded-full">Laravel 11</span>
+                            <span class="bg-gray-700 text-cyan-300 text-xs font-semibold px-2.5 py-1 rounded-full">MySQL</span>
+                            <span class="bg-gray-700 text-cyan-300 text-xs font-semibold px-2.5 py-1 rounded-full">Flask</span>
+                            <span class="bg-gray-700 text-cyan-300 text-xs font-semibold px-2.5 py-1 rounded-full">ApexCharts</span>
+                        </div>
+                        <a href="https://github.com/ryangandi46/maset-app" class="text-cyan-400 font-semibold hover:text-cyan-300 mt-auto" data-translate="proj1_link">Lihat Repositori</a>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div data-tilt class="reveal glassmorphism rounded-2xl overflow-hidden flex flex-col" style="transition-delay: 400ms;">
+                    <img src="https://placehold.co/600x400/0a0a1a/06b6d4?text=SABER+IOT" alt="Gambar Projek 3" class="w-full h-56 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold mb-2 text-white" data-translate="proj3_title">SABER IOT - Sistem Awas Banjir</h3>
+                        <p class="text-gray-400 mb-4 text-sm flex-grow" data-translate="proj3_desc">Perangkat lunak IoT untuk monitoring banjir secara real-time menggunakan Arduino dan Thingsboard untuk peringatan dini.</p>
+                         <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-700 text-cyan-300 text-xs font-semibold px-2.5 py-1 rounded-full">Arduino</span>
+                            <span class="bg-gray-700 text-cyan-300 text-xs font-semibold px-2.5 py-1 rounded-full">Thingsboard</span>
+                            <span class="bg-gray-700 text-cyan-300 text-xs font-semibold px-2.5 py-1 rounded-full">Trello</span>
+                        </div>
+                        <a href="" class="text-cyan-400 font-semibold hover:text-cyan-300 mt-auto" data-translate="proj1_link">Lihat Repositori &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+      <!-- Bagian Kontak -->
+      <section id="kontak" class="py-24">
+        <div class="reveal max-w-6xl mx-auto">
+          <div class="text-center">
+            <h2
+              class="text-4xl font-bold mb-2 text-white"
+              data-translate="contact_title"
+            >
+              Hubungi Saya
+            </h2>
+            <p class="text-gray-400 mb-2" data-translate="contact_subtitle">
+              Get in Touch
+            </p>
+            <div
+              class="w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mb-12"
+            ></div>
+          </div>
+
+          <div
+            class="glassmorphism p-8 md:p-12 rounded-2xl grid grid-cols-1 md:grid-cols-5 gap-12"
+          >
+            <div class="md:col-span-2">
+              <h3
+                class="text-2xl font-semibold text-white mb-4"
+                data-translate="contact_info_title"
+              >
+                Informasi Kontak
+              </h3>
+              <p
+                class="text-gray-300 mb-8 leading-relaxed"
+                data-translate="contact_info_desc"
+              >
+                Jangan ragu untuk menghubungi. Saya selalu terbuka untuk
+                membahas proyek baru, ide kreatif, atau peluang untuk menjadi
+                bagian dari visi Anda.
+              </p>
+              <div class="space-y-6 mb-8">
+                <div class="flex items-center gap-4">
+                  <i
+                    data-feather="map-pin"
+                    class="w-6 h-6 text-cyan-400 flex-shrink-0"
+                  ></i>
+                  <div>
+                    <h4 class="font-semibold" data-translate="contact_location">
+                      Lokasi
+                    </h4>
+                    <p class="text-gray-400">Bandung, Indonesia</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <i
+                    data-feather="mail"
+                    class="w-6 h-6 text-cyan-400 flex-shrink-0"
+                  ></i>
+                  <div>
+                    <h4 class="font-semibold" data-translate="contact_email">
+                      Email
+                    </h4>
+                    <p class="text-gray-400">rianseptiangandi25372@gmail.com</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <i
+                    data-feather="phone"
+                    class="w-6 h-6 text-cyan-400 flex-shrink-0"
+                  ></i>
+                  <div>
+                    <h4 class="font-semibold" data-translate="contact_phone">
+                      Telepon
+                    </h4>
+                    <p class="text-gray-400">+62 855-2378-9654</p>
+                  </div>
+                </div>
+              </div>
+              <h4
+                class="text-lg font-semibold text-white mb-4"
+                data-translate="contact_follow"
+              >
+                Ikuti Saya
+              </h4>
+              <div class="flex space-x-4">
+                <a
+                  href="#"
+                  class="p-3 bg-gray-800/60 rounded-full transition-all duration-300 hover:text-white hover:bg-cyan-600"
+                  ><i data-feather="github" class="w-5 h-5"></i
+                ></a>
+                <a
+                  href="#"
+                  class="p-3 bg-gray-800/60 rounded-full transition-all duration-300 hover:text-white hover:bg-cyan-600"
+                  ><i data-feather="linkedin" class="w-5 h-5"></i
+                ></a>
+                <a
+                  href="#"
+                  class="p-3 bg-gray-800/60 rounded-full transition-all duration-300 hover:text-white hover:bg-cyan-600"
+                  ><i data-feather="twitter" class="w-5 h-5"></i
+                ></a>
+              </div>
+            </div>
+
+            <div class="md:col-span-3">
+              <h3
+                class="text-2xl font-semibold text-white mb-4"
+                data-translate="contact_form_title"
+              >
+                Kirim Saya Pesan
+              </h3>
+              <form
+                id="contact-form"
+                action="https://formspree.io/f/YOUR_FORM_ID"
+                method="POST"
+              >
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                  <input
+                    type="text"
+                    name="name"
+                    data-translate-placeholder="contact_form_name"
+                    placeholder="Nama Anda"
+                    class="form-input w-full bg-gray-800/50 border border-gray-700 rounded-md py-3 px-4 text-gray-200 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-colors"
+                    required
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    data-translate-placeholder="contact_form_email"
+                    placeholder="Email Anda"
+                    class="form-input w-full bg-gray-800/50 border border-gray-700 rounded-md py-3 px-4 text-gray-200 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-colors"
+                    required
+                  />
+                </div>
+                <div class="mb-6">
+                  <input
+                    type="text"
+                    name="subject"
+                    data-translate-placeholder="contact_form_subject"
+                    placeholder="Subjek"
+                    class="form-input w-full bg-gray-800/50 border border-gray-700 rounded-md py-3 px-4 text-gray-200 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-colors"
+                    required
+                  />
+                </div>
+                <div class="mb-6">
+                  <textarea
+                    name="message"
+                    rows="5"
+                    data-translate-placeholder="contact_form_message"
+                    placeholder="Pesan Anda"
+                    class="form-input w-full bg-gray-800/50 border border-gray-700 rounded-md py-3 px-4 text-gray-200 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-colors"
+                    required
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="w-full inline-block bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/40 hover:scale-105"
+                  data-translate="contact_form_button"
+                >
+                  Kirim Pesan
+                </button>
+                <p id="form-status" class="mt-4 text-green-400 text-center"></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-gray-800/50 mt-10">
+      <div class="container mx-auto px-6 py-6 text-center text-gray-500">
+        <p class="text-sm">
+          <span data-translate="footer_text"
+            >Dirancang & Dibangun oleh Ryan Septian Gandi</span
+          >
+          &copy; <span id="year"></span>. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // --- INISIALISASI ---
+      feather.replace();
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // --- PARTICLE BACKGROUND ---
+      tsParticles.load("tsparticles", {
+        fpsLimit: 60,
+        background: { color: { value: "#0a0a1a" } },
+        particles: {
+          number: { value: 50 },
+          color: { value: "#06b6d4" },
+          shape: { type: "circle" },
+          opacity: { value: 0.5, random: true },
+          size: { value: 2, random: true },
+          links: {
+            color: "#0891b2",
+            distance: 150,
+            enable: true,
+            opacity: 0.3,
+            width: 1,
+          },
+          move: {
+            enable: true,
+            speed: 1,
+            direction: "none",
+            outModes: { default: "out" },
+          },
+        },
+        interactivity: {
+          events: {
+            onHover: { enable: true, mode: "repulse" },
+            onClick: { enable: true, mode: "push" },
+          },
+          modes: {
+            repulse: { distance: 100, duration: 0.4 },
+            push: { quantity: 4 },
+          },
+        },
+      });
+
+      // --- MENU MOBILE ---
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const navLinks = document.querySelectorAll(
+        "#mobile-menu a, header nav a"
+      );
+      mobileMenuButton.addEventListener("click", () =>
+        mobileMenu.classList.toggle("hidden")
+      );
+      navLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          if (window.innerWidth < 768) {
+            mobileMenu.classList.add("hidden");
+          }
+        });
+      });
+
+      // --- ANIMASI SCROLL ---
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
+
+      // --- TRANSLATION SCRIPT ---
+      const translations = {
+        header_title: { id: "Portofolio", en: "Portfolio" },
+        nav_about: { id: "tentang", en: "about" },
+        nav_experience: { id: "pengalaman", en: "experience" },
+        nav_skills: { id: "keahlian", en: "skills" },
+        nav_projects: { id: "projek", en: "projects" },
+        nav_contact: { id: "kontak", en: "contact" },
+        nav_about_mobile: { id: "tentang", en: "about" },
+        nav_experience_mobile: { id: "pengalaman", en: "experience" },
+        nav_skills_mobile: { id: "keahlian", en: "skills" },
+        nav_projects_mobile: { id: "projek", en: "projects" },
+        nav_contact_mobile: { id: "kontak", en: "contact" },
+        lang_id: { id: "Indonesia", en: "Indonesian" },
+        lang_en: { id: "Inggris", en: "English" },
+        hero_greeting: { id: "Hello, It's Me", en: "Hello, It's Me" },
+        hero_name: { id: "Ryan Septian Gandi", en: "Ryan Septian Gandi" },
+        hero_intro: { id: "And I'm a", en: "And I'm a" },
+        hero_description: {
+          id: "Fresh Graduate Teknik Informatika dengan fokus pada Web Development. Berpengalaman membangun aplikasi dari perancangan hingga deployment.",
+          en: "A Fresh Graduate of Informatics Engineering with a focus on Web Development. Experienced in building applications from design to deployment.",
+        },
+        hero_button: { id: "Tentang Saya", en: "More About Me" },
+        about_title: { id: "Tentang Saya", en: "About Me" },
+        about_whoami: { id: "Siapa saya?", en: "Who am I?" },
+        about_description: {
+          id: "Fresh Graduate Teknik Informatika dengan fokus pada Web Development (Laravel, PHP, JavaScript, MySQL) serta pengalaman dalam proyek nyata. Terbiasa bekerja dengan tim menggunakan metode Agile, serta memiliki semangat tinggi untuk terus belajar teknologi baru.",
+          en: "A Fresh Graduate of Informatics Engineering with a focus on Web Development (Laravel, PHP, JavaScript, MySQL) and experience in real projects. Accustomed to working in a team using the Agile method, and has a high enthusiasm to continue learning new technologies.",
+        },
+        about_name_label: { id: "Nama:", en: "Name:" },
+        about_age_label: { id: "Umur:", en: "Age:" },
+        about_experience_label: { id: "Status:", en: "Status:" },
+        about_phone_label: { id: "Telepon:", en: "Phone:" },
+        about_location_label: { id: "Lokasi:", en: "Location:" },
+        about_cv_button: { id: "Download CV", en: "Download CV" },
+        about_contact_button: { id: "Hubungi Saya", en: "Contact Me" },
+        experience_title: { id: "Pengalaman", en: "Experience" },
+        exp1_title: {
+          id: "Web Developer Freelance",
+          en: "Freelance Web Developer",
+        },
+        exp1_company: {
+          id: "BKAD Tangerang Selatan // Nov 2024 - Jan 2025",
+          en: "BKAD South Tangerang // Nov 2024 - Jan 2025",
+        },
+        exp1_desc: {
+          id: "Merancang & mengembangkan sistem informasi keuangan dan aset daerah berbasis Laravel 11 & MySQL, termasuk fitur GIS dengan Leaflet JS.",
+          en: "Designed & developed a regional financial and asset information system based on Laravel 11 & MySQL, including a GIS feature with Leaflet JS.",
+        },
+        exp2_title: { id: "Web Developer Intern", en: "Web Developer Intern" },
+        exp2_company: {
+          id: "SMK Itikurih Ciparay // Jun 2024 - Sep 2024",
+          en: "SMK Itikurih Ciparay // Jun 2024 - Sep 2024",
+        },
+        exp2_desc: {
+          id: "Membangun sistem inventaris sekolah menggunakan Laravel 10 untuk menggantikan pencatatan manual, termasuk dokumentasi teknis dan pengujian.",
+          en: "Built a school inventory system using Laravel 10 to replace manual recording, including technical documentation and testing.",
+        },
+        exp3_title: {
+          id: "Software Engineer (Studi Independen)",
+          en: "Software Engineer (Independent Study)",
+        },
+        exp3_company: {
+          id: "Indobot Academy // Feb 2024 - Jun 2024",
+          en: "Indobot Academy // Feb 2024 - Jun 2024",
+        },
+        exp3_desc: {
+          id: "Pelatihan intensif 6 bulan di bidang IoT, mencakup arsitektur, hardware, pemrograman (C, Arduino), platform (Blynk, Thingsboard), dan manajemen proyek.",
+          en: "6-month intensive training in IoT, covering architecture, hardware, programming (C, Arduino), platforms (Blynk, Thingsboard), and project management.",
+        },
+        skills_title: { id: "Keahlian Saya", en: "My Skills" },
+        skills_tech_title: { id: "Keahlian Teknis", en: "Technical Skills" },
+        skills_prof_title: {
+          id: "Keahlian Interpersonal",
+          en: "Interpersonal Skills",
+        },
+        skill_comm: { id: "Manajemen Waktu", en: "Time Management" },
+        skill_team: { id: "Kerja Sama Tim", en: "Teamwork" },
+        skill_problem: { id: "Problem Solving", en: "Problem Solving" },
+        skill_adapt: { id: "Adaptabilitas", en: "Adaptability" },
+        skills_tool_title: {
+          id: "Tools & Teknologi",
+          en: "Tools & Technologies",
+        },
+        projects_title: { id: "Projek", en: "Projects" },
+        proj1_title: {
+          id: "SITEPAD - Sistem Pendataan Aset Daerah",
+          en: "SITEPAD - Regional Asset Data Collection System",
+        },
+        proj1_desc: {
+          id: "Aplikasi web untuk pengelolaan keuangan & aset pemerintah daerah dengan dashboard interaktif, CRUD, dan manajemen user.",
+          en: "Web application for regional government financial & asset management with an interactive dashboard, CRUD, and user management.",
+        },
+        proj1_link: {
+          id: "Lihat Repositori &rarr;",
+          en: "View Repository &rarr;",
+        },
+        proj2_title: {
+          id: "MASET-APP - Rekomendasi Makanan Sehat",
+          en: "MASET-APP - Healthy Food Recommendation",
+        },
+        proj2_desc: {
+          id: "Aplikasi rekomendasi makanan sehat berbasis Laravel & MySQL, dengan integrasi API machine learning (KMeans).",
+          en: "Healthy food recommendation application based on Laravel & MySQL, with machine learning API integration (KMeans).",
+        },
+        proj3_title: {
+          id: "SABER IOT - Sistem Awas Banjir",
+          en: "SABER IOT - Flood Awareness System",
+        },
+        proj3_desc: {
+          id: "Perangkat lunak IoT untuk monitoring banjir secara real-time menggunakan Arduino dan Thingsboard untuk peringatan dini.",
+          en: "IoT software for real-time flood monitoring using Arduino and Thingsboard for early warnings.",
+        },
+        contact_title: { id: "Hubungi Saya", en: "Contact Me" },
+        contact_subtitle: { id: "Get in Touch", en: "Get in Touch" },
+        contact_info_title: {
+          id: "Informasi Kontak",
+          en: "Contact Information",
+        },
+        contact_info_desc: {
+          id: "Jangan ragu untuk menghubungi. Saya selalu terbuka untuk membahas proyek baru, ide kreatif, atau peluang untuk menjadi bagian dari visi Anda.",
+          en: "Feel free to reach out. I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.",
+        },
+        contact_location: { id: "Lokasi", en: "Location" },
+        contact_email: { id: "Email", en: "Email" },
+        contact_phone: { id: "Telepon", en: "Phone" },
+        contact_follow: { id: "Ikuti Saya", en: "Follow Me" },
+        contact_form_title: { id: "Kirim Saya Pesan", en: "Send Me a Message" },
+        contact_form_name: { id: "Nama Anda", en: "Your Name" },
+        contact_form_email: { id: "Email Anda", en: "Your Email" },
+        contact_form_subject: { id: "Subjek", en: "Subject" },
+        contact_form_message: { id: "Pesan Anda", en: "Your Message" },
+        contact_form_button: { id: "Kirim Pesan", en: "Send Message" },
+        footer_text: {
+          id: "Dirancang & Dibangun oleh Ryan Septian Gandi",
+          en: "Designed & Built by Ryan Septian Gandi",
+        },
+      };
+
+      const jobTitlesTranslations = {
+        id: ["Fullstack Developer", "Web Developer", "Backend Engineer"],
+        en: ["Fullstack Developer", "Web Developer", "Backend Engineer"],
+      };
+
+      let jobTitles = jobTitlesTranslations.id;
+
+      const langButtons = document.querySelectorAll(".lang-switch");
+
+      const switchLanguage = (lang) => {
+        document.documentElement.lang = lang;
+
+        document.querySelectorAll("[data-translate]").forEach((el) => {
+          const key = el.getAttribute("data-translate");
+          if (translations[key]) {
+            el.innerText = translations[key][lang];
+          }
+        });
+
+        document
+          .querySelectorAll("[data-translate-placeholder]")
+          .forEach((el) => {
+            const key = el.getAttribute("data-translate-placeholder");
+            if (translations[key]) {
+              el.placeholder = translations[key][lang];
+            }
+          });
+
+        langButtons.forEach((button) => {
+          if (button.getAttribute("data-lang") === lang) {
+            button.classList.add("text-cyan-400");
+            button.classList.remove("text-gray-500", "hover:text-white");
+          } else {
+            button.classList.remove("text-cyan-400");
+            button.classList.add("text-gray-500", "hover:text-white");
+          }
+        });
+        jobTitles = jobTitlesTranslations[lang];
+        resetTypingAnimation();
+      };
+
+      langButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const lang = button.getAttribute("data-lang");
+          switchLanguage(lang);
+        });
+      });
+
+      const typingTextElement = document.getElementById("typing-text");
+      let titleIndex = 0;
+      let charIndex = 0;
+      let typeTimeout, eraseTimeout;
+
+      function type() {
+        clearTimeout(typeTimeout);
+        if (charIndex < jobTitles[titleIndex].length) {
+          typingTextElement.textContent +=
+            jobTitles[titleIndex].charAt(charIndex);
+          charIndex++;
+          typeTimeout = setTimeout(type, 100);
+        } else {
+          eraseTimeout = setTimeout(erase, 2000);
+        }
+      }
+
+      function erase() {
+        clearTimeout(eraseTimeout);
+        if (charIndex > 0) {
+          typingTextElement.textContent = jobTitles[titleIndex].substring(
+            0,
+            charIndex - 1
+          );
+          charIndex--;
+          eraseTimeout = setTimeout(erase, 50);
+        } else {
+          titleIndex = (titleIndex + 1) % jobTitles.length;
+          typeTimeout = setTimeout(type, 500);
+        }
+      }
+
+      function resetTypingAnimation() {
+        clearTimeout(typeTimeout);
+        clearTimeout(eraseTimeout);
+        typingTextElement.textContent = "";
+        titleIndex = 0;
+        charIndex = 0;
+        type();
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        switchLanguage("id");
+      });
+
+      VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+        max: 15,
+        speed: 400,
+        glare: true,
+        "max-glare": 0.2,
+      });
+
+      const photoLanyard = document.getElementById("photo-lanyard-container");
+      let isPhotoDragging = false;
+      let photoOffsetX, photoOffsetY;
+
+      const startPhotoDrag = (e) => {
+        isPhotoDragging = true;
+        photoLanyard.classList.add("dragging");
+        if (getComputedStyle(photoLanyard).position !== "absolute") {
+          const rect = photoLanyard.getBoundingClientRect();
+          const parentRect = photoLanyard.parentElement.getBoundingClientRect();
+          photoLanyard.style.position = "absolute";
+          photoLanyard.style.left = `${rect.left - parentRect.left}px`;
+          photoLanyard.style.top = `${rect.top - parentRect.top}px`;
+        }
+        const clientX = e.clientX || e.touches[0].clientX;
+        const clientY = e.clientY || e.touches[0].clientY;
+        photoOffsetX = clientX - photoLanyard.offsetLeft;
+        photoOffsetY = clientY - photoLanyard.offsetTop;
+        e.preventDefault();
+      };
+      const onPhotoDrag = (e) => {
+        if (!isPhotoDragging) return;
+        const clientX = e.clientX || e.touches[0].clientX;
+        const clientY = e.clientY || e.touches[0].clientY;
+        let newX = clientX - photoOffsetX;
+        let newY = clientY - photoOffsetY;
+        const container = photoLanyard.parentElement;
+        const maxX = container.clientWidth - photoLanyard.offsetWidth;
+        const maxY = container.clientHeight - photoLanyard.offsetHeight;
+        photoLanyard.style.left = `${Math.max(0, Math.min(newX, maxX))}px`;
+        photoLanyard.style.top = `${Math.max(0, Math.min(newY, maxY))}px`;
+      };
+      const stopPhotoDrag = () => {
+        isPhotoDragging = false;
+        photoLanyard.classList.remove("dragging");
+      };
+      photoLanyard.addEventListener("mousedown", startPhotoDrag);
+      document.addEventListener("mousemove", onPhotoDrag);
+      document.addEventListener("mouseup", stopPhotoDrag);
+      photoLanyard.addEventListener("touchstart", startPhotoDrag, {
+        passive: false,
+      });
+      document.addEventListener("touchmove", onPhotoDrag, { passive: false });
+      document.addEventListener("touchend", stopPhotoDrag);
+
+      var form = document.getElementById("contact-form");
+      var status = document.getElementById("form-status");
+      async function handleSubmit(event) {
+        event.preventDefault();
+        var data = new FormData(event.target);
+        fetch(event.target.action, {
+          method: form.method,
+          body: data,
+          headers: { Accept: "application/json" },
+        })
+          .then((response) => {
+            if (response.ok) {
+              status.innerText = "Terima kasih! Pesan Anda telah terkirim.";
+              form.reset();
+            } else {
+              response.json().then((data) => {
+                if (Object.hasOwn(data, "errors")) {
+                  status.innerText = data["errors"]
+                    .map((error) => error["message"])
+                    .join(", ");
+                } else {
+                  status.innerText =
+                    "Oops! Terjadi masalah saat mengirim formulir.";
+                }
+              });
+            }
+          })
+          .catch((error) => {
+            status.innerText = "Oops! Terjadi masalah saat mengirim formulir.";
+          });
+      }
+      form.addEventListener("submit", handleSubmit);
+    </script>
+  </body>
+</html>
