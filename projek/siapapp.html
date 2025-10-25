@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail Proyek - siapApp</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- Devicon CDN for logos -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
+    <!-- tsParticles -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.12.0/tsparticles.slim.bundle.min.js"></script>
+    <!-- Vanilla-Tilt.js -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"
+    ></script>
+    <!-- Swiper.js CSS (DITAMBAHKAN) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    <!-- CSS Kustom (Gunakan path relatif) -->
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body class="text-gray-200">
+    <!-- Kontainer untuk partikel -->
+    <div id="tsparticles"></div>
+
+    <!-- Header (Sama seperti index.html, tapi path disesuaikan) -->
+    <header class="fixed top-0 left-0 right-0 z-50 glassmorphism">
+      <div
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a
+          href="../index.html"
+          class="text-2xl font-bold text-cyan-400 text-glow"
+          >Portofolio</a
+        >
+        <nav class="hidden md:flex space-x-8 items-center">
+          <a
+            href="../index.html#tentang"
+            class="text-gray-300 transition-all duration-300 hover:text-cyan-400 hover:text-glow"
+            >tentang</a
+          >
+          <a
+            href="../index.html#pengalaman"
+            class="text-gray-300 transition-all duration-300 hover:text-cyan-400 hover:text-glow"
+            >pengalaman</a
+          >
+          <a
+            href="../index.html#keahlian"
+            class="text-gray-300 transition-all duration-300 hover:text-cyan-400 hover:text-glow"
+            >keahlian</a
+          >
+          <a
+            href="../index.html#projek"
+            class="text-gray-300 transition-all duration-300 hover:text-cyan-400 hover:text-glow"
+            >projek</a
+          >
+          <a
+            href="../index.html#kontak"
+            class="text-gray-300 transition-all duration-300 hover:text-cyan-400 hover:text-glow"
+            >kontak</a
+          >
+        </nav>
+        <button
+          id="mobile-menu-button"
+          class="md:hidden text-gray-300 hover:text-white focus:outline-none"
+        >
+          <i data-feather="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4 space-y-2">
+        <a
+          href="../index.html#tentang"
+          class="block text-gray-300 hover:bg-gray-700/50 hover:text-cyan-400 rounded-md px-3 py-2"
+          >tentang</a
+        >
+        <a
+          href="../index.html#pengalaman"
+          class="block text-gray-300 hover:bg-gray-700/50 hover:text-cyan-400 rounded-md px-3 py-2"
+          >pengalaman</a
+        >
+        <a
+          href="../index.html#keahlian"
+          class="block text-gray-300 hover:bg-gray-700/50 hover:text-cyan-400 rounded-md px-3 py-2"
+          >keahlian</a
+        >
+        <a
+          href="../index.html#projek"
+          class="block text-gray-300 hover:bg-gray-700/50 hover:text-cyan-400 rounded-md px-3 py-2"
+          >projek</a
+        >
+        <a
+          href="../index.html#kontak"
+          class="block text-gray-300 hover:bg-gray-700/50 hover:text-cyan-400 rounded-md px-3 py-2"
+          >kontak</a
+        >
+      </div>
+    </header>
+
+    <!-- Konten Detail Proyek -->
+    <main class="container mx-auto px-6 pt-32 pb-24">
+      <section id="project-detail">
+        <div
+          class="reveal max-w-4xl mx-auto glassmorphism p-8 md:p-12 rounded-2xl"
+        >
+          <!-- Judul Proyek -->
+          <h1 class="text-4xl font-bold text-white mb-4 text-center">
+            siapApp - Fondasi Aplikasi Laravel (Boilerplate)
+          </h1>
+          <div class="w-24 h-1 bg-cyan-500 mx-auto mb-8"></div>
+
+          <!-- Gambar Utama Proyek -->
+          <!-- <img
+            src="https://placehold.co/800x450/0a0a1a/06b6d4?text=SIAP+APP+Screenshot"
+            alt="Screenshot siapApp"
+            class="w-full h-auto object-cover rounded-lg mb-8 shadow-lg"
+          /> -->
+          <div
+            class="relative w-full mx-auto mb-8 rounded-lg overflow-hidden shadow-lg"
+          >
+            <!-- Swiper Container -->
+            <div class="swiper detail-swiper">
+              <!-- Wrapper untuk semua slide -->
+              <div class="swiper-wrapper">
+                <!-- Slide 1 (Gambar Asli Anda) -->
+                <div class="swiper-slide">
+                  <img
+                    src="../image/siapapp.jpg"
+                    alt="MASET-APP Dashboard"
+                    class="w-full h-auto object-cover aspect-video"
+                  />
+                </div>
+                <!-- Slide 2 (Placeholder) -->
+                <div class="swiper-slide">
+                  <img
+                    src="../image/siapapp.png"
+                    alt="Screenshot Fitur 1"
+                    class="w-full h-auto object-cover aspect-video"
+                  />
+                </div>
+                <!-- Slide 3 (Placeholder) -->
+                <div class="swiper-slide">
+                  <img
+                    src="../image/siapapp_laporan.jpg"
+                    alt="Screenshot Fitur 2"
+                    class="w-full h-auto object-cover aspect-video"
+                  />
+                </div>
+              </div>
+              <!-- Pagination Bullets -->
+              <div class="swiper-pagination"></div>
+              <!-- Navigation Arrows -->
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+            </div>
+          </div>
+
+          <!-- Deskripsi Proyek -->
+          <div class="prose prose-invert max-w-none text-gray-300">
+            <h2 class="text-2xl font-semibold text-white mt-6 mb-3">
+              Tentang Proyek
+            </h2>
+            <p>
+              siapApp adalah sebuah
+              <strong>sistem inventaris aset sekolah</strong> dibuat menggunakan Laravel yang dirancang
+              untuk mempercepat proses awal pencatatan aset disekolah yang dimana untuk menggantikan pencatatan manual.
+              Proyek ini menyediakan modul-modul inti yang sudah terkonfigurasi,
+              seperti manajemen pengguna, autentikasi, import & export data aset dan peminjam.
+            </p>
+
+            <h2 class="text-2xl font-semibold text-white mt-6 mb-3">
+              Fitur Utama
+            </h2>
+            <ul class="list-disc pl-6 space-y-2">
+              <li>
+                <strong>Sistem Autentikasi Lengkap:</strong> Fungsionalitas
+                login, registrasi, dan proteksi rute (middleware) yang sudah
+                terpasang.
+              </li>
+              <li>
+                <strong>Manajemen Hak Akses (Otorisasi):</strong> Pengaturan hak
+                akses pengguna (role-based) yang fleksibel menggunakan Gates &
+                Policies Laravel.
+              </li>
+              <li>
+                <strong>Pola CRUD Standar:</strong> Menyediakan contoh operasi
+                <em>Create, Read, Update, Delete</em> (CRUD) yang generik,
+                lengkap dengan validasi (FormRequest) sebagai acuan.
+              </li>
+              <li>
+                <strong>Laporan:</strong> Menyediakan laporan aset dan peminjaman
+                dalam format PDF dan Excel untuk kemudahan dokumentasi.
+              </li>
+              <li>
+                <strong>Import Data:</strong> Menyediakan fitur impor data aset
+                dari file Excel untuk mempercepat proses input data awal.
+              </li>
+              <li>
+                <strong>Komponen UI Terstruktur:</strong> Termasuk
+                <em>layout</em> Blade utama dan komponen-komponen yang dapat
+                digunakan kembali (seperti notifikasi/alert) untuk konsistensi
+                tampilan.
+              </li>
+            </ul>
+
+            <h2 class="text-2xl font-semibold text-white mt-6 mb-3">
+              Teknologi yang Digunakan
+            </h2>
+            <div class="flex flex-wrap gap-3">
+              <span
+                class="bg-gray-700 text-cyan-300 text-sm font-semibold px-3 py-1 rounded-full"
+                >Laravel (PHP)</span
+              >
+              <span
+                class="bg-gray-700 text-cyan-300 text-sm font-semibold px-3 py-1 rounded-full"
+                >Blade/Bootstrap</span
+              >
+              <span
+                class="bg-gray-700 text-cyan-300 text-sm font-semibold px-3 py-1 rounded-full"
+                >MySQL</span
+              >
+              <span
+                class="bg-gray-700 text-cyan-300 text-sm font-semibold px-3 py-1 rounded-full"
+                >Laravel Excel</span
+              >
+              <span
+                class="bg-gray-700 text-cyan-300 text-sm font-semibold px-3 py-1 rounded-full"
+                >PHPUnit</span
+              >
+              <span
+                class="bg-gray-700 text-cyan-300 text-sm font-semibold px-3 py-1 rounded-full"
+                >Git</span
+              >
+            </div>
+
+            <h2 class="text-2xl font-semibold text-white mt-6 mb-3">
+              Peran & Kontribusi
+            </h2>
+            <p>
+              Peran utama saya adalah merancang dan membangun
+              <em>sistem invenraris</em> ini dari awal. Kontribusi spesifik saya
+              meliputi standarisasi pola CRUD, menyiapkan sistem agar tidak ada kendala dalam penggunaannya.
+            </p>
+
+            <h2 class="text-2xl font-semibold text-white mt-6 mb-3">
+              Dampak Proyek
+            </h2>
+            <p>
+              Dengan adanya siapApp, proses pencatatan aset sekolah menjadi lebih
+              efisien dan terstruktur. Proyek ini telah membantu sekolah dalam mempermudah pencatatan dan pelacakan aset,
+              mengurangi kesalahan manusia, serta meningkatkan transparansi dalam pengelolaan inventaris.
+            </p>
+          </div>
+
+          <!-- Tombol Kembali -->
+          <div class="text-center mt-12">
+            <a
+              href="../index.html#projek"
+              class="inline-block bg-gray-700/50 text-gray-200 border border-gray-600 font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:bg-gray-700 hover:text-white"
+              >Kembali ke Daftar Proyek</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer (Sama seperti index.html) -->
+    <footer class="border-t border-gray-800/50 mt-10">
+      <div class="container mx-auto px-6 py-6 text-center text-gray-500">
+        <p class="text-sm">
+          Dirancang & Dibangun oleh Ryan Septian Gandi &copy;
+          <span id="year"></span>. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- JavaScript Kustom (Gunakan path relatif) -->
+    <!-- Swiper.js JS (DITAMBAHKAN) -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- JavaScript Kustom (Gunakan path relatif) -->
+    <script src="../js/script.js"></script>
+    <script>
+      // Panggil feather.replace() secara manual
+      feather.replace();
+
+      // --- INISIALISASI SWIPER UNTUK DETAIL PAGE ---
+      // (Berbeda dari swiper di index.html)
+      const detailSwiper = new Swiper(".detail-swiper", {
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 20,
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+        },
+
+        // Pagination (bullets)
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+
+        // Tombol Navigasi (panah)
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>
+  </body>
+</html>
